@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 Route::get('/jobs', function () {
     return view('jobs.index');
-})->middleware(['auth', 'verified']);
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

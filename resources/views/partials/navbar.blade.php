@@ -1,15 +1,19 @@
-<nav class="w-full border-b bg-white">
+<nav class="w-full bg-white border-b-4 border-black">
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
         <!-- Logo -->
-        <a href="/" class="text-lg font-semibold tracking-tight">
+        <a href="/" class="text-xl font-black tracking-tight text-black border-2 border-black px-3 py-1 shadow-[3px_3px_0px_black]">
             HireFlow
         </a>
 
         <!-- Menu -->
-        <div class="hidden md:flex items-center gap-8 text-sm text-gray-600">
-            <a href="/" class="hover:text-black">Home</a>
-            <a href="/jobs" class="hover:text-black">Jobs</a>
+        <div class="hidden md:flex items-center gap-8 text-sm font-bold text-black">
+            <a href="/" class="hover:bg-yellow-300 px-3 py-1 border border-black shadow-[2px_2px_0px_black] transition">
+                Home
+            </a>
+            <a href="/jobs" class="hover:bg-yellow-300 px-3 py-1 border border-black shadow-[2px_2px_0px_black] transition">
+                Jobs
+            </a>
         </div>
 
         <!-- Right -->
@@ -17,8 +21,11 @@
 
             @auth
             <!-- DROPDOWN BUTTON -->
-            <button onclick="toggleMenu()" class="flex items-center gap-2 text-sm text-gray-600 hover:text-black">
+            <button onclick="toggleMenu()"
+                class="flex items-center gap-2 text-sm font-bold text-black border-2 border-black px-3 py-1 shadow-[3px_3px_0px_black] hover:translate-x-1 hover:translate-y-1 transition bg-white">
+
                 {{ auth()->user()->name }}
+
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M19 9l-7 7-7-7" />
@@ -27,22 +34,22 @@
 
             <!-- DROPDOWN MENU -->
             <div id="dropdownMenu"
-                 class="hidden absolute right-0 mt-2 w-40 bg-white border rounded-md shadow-sm py-2 text-sm">
+                 class="hidden absolute right-0 mt-3 w-48 bg-white border-4 border-black shadow-[6px_6px_0px_black] py-2 text-sm">
 
                 <a href="{{ route('profile.edit') }}"
-                class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-black">
+                   class="block px-4 py-2 font-bold text-black hover:bg-yellow-300 border-b border-black">
                     Profile
                 </a>
 
                 <a href="{{ route('dashboard') }}"
-                   class="block px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-black">
+                   class="block px-4 py-2 font-bold text-black hover:bg-yellow-300 border-b border-black">
                     Dashboard
                 </a>
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit"
-                            class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-100 hover:text-black">
+                        class="w-full text-left px-4 py-2 font-bold text-black hover:bg-red-300">
                         Logout
                     </button>
                 </form>
@@ -51,12 +58,13 @@
 
             @else
                 <!-- GUEST -->
-                <a href="/login" class="text-gray-600 hover:text-black mr-4">
+                <a href="/login"
+                   class="text-black font-bold border-2 border-black px-3 py-1 shadow-[3px_3px_0px_black] hover:translate-x-1 hover:translate-y-1 transition mr-3">
                     Login
                 </a>
 
                 <a href="/register"
-                   class="border px-4 py-1.5 rounded-md hover:bg-gray-100 transition">
+                   class="bg-yellow-300 text-black font-bold border-2 border-black px-3 py-1 shadow-[3px_3px_0px_black] hover:translate-x-1 hover:translate-y-1 transition">
                     Daftar
                 </a>
             @endauth
@@ -73,7 +81,6 @@
         menu.classList.toggle('hidden');
     }
 
-    // klik luar untuk close
     document.addEventListener('click', function(event) {
         const menu = document.getElementById('dropdownMenu');
         const button = event.target.closest('button');
