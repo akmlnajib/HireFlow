@@ -15,7 +15,7 @@
             <div class="border-2 border-black p-4 shadow-[4px_4px_0px_black]">
                 <h3 class="font-black mb-3">Navigasi</h3>
                 <ul class="space-y-2 text-black font-medium">
-                    <li><a href="/" class="hover:bg-yellow-300 px-2 py-1 inline-block border border-black">Home</a></li>
+                    <li><a href="{{ route('home') }}" class="hover:bg-yellow-300 px-2 py-1 inline-block border border-black">Home</a></li>
                     <li><a href="#jobs" class="hover:bg-yellow-300 px-2 py-1 inline-block border border-black">Lowongan</a></li>
                     <li><a href="/login" class="hover:bg-yellow-300 px-2 py-1 inline-block border border-black">Login</a></li>
                 </ul>

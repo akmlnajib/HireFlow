@@ -2,13 +2,13 @@
     <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
         <!-- Logo -->
-        <a href="/" class="text-xl font-black tracking-tight text-black border-2 border-black px-3 py-1 shadow-[3px_3px_0px_black]">
+        <a href="{{ route('home') }}" class="text-xl font-black tracking-tight text-black border-2 border-black px-3 py-1 shadow-[3px_3px_0px_black]">
             HireFlow
         </a>
 
         <!-- Menu -->
         <div class="hidden md:flex items-center gap-8 text-sm font-bold text-black">
-            <a href="/" class="hover:bg-yellow-300 px-3 py-1 border border-black shadow-[2px_2px_0px_black] transition">
+            <a href="{{ route('home') }}" class="hover:bg-yellow-300 px-3 py-1 border border-black shadow-[2px_2px_0px_black] transition">
                 Home
             </a>
             <a href="/jobs" class="hover:bg-yellow-300 px-3 py-1 border border-black shadow-[2px_2px_0px_black] transition">
@@ -36,14 +36,9 @@
             <div id="dropdownMenu"
                  class="hidden absolute right-0 mt-3 w-48 bg-white border-4 border-black shadow-[6px_6px_0px_black] py-2 text-sm">
 
-                <a href="{{ route('profile.edit') }}"
+                <a href="{{ route('profile.index') }}"
                    class="block px-4 py-2 font-bold text-black hover:bg-yellow-300 border-b border-black">
                     Profile
-                </a>
-
-                <a href="{{ route('dashboard') }}"
-                   class="block px-4 py-2 font-bold text-black hover:bg-yellow-300 border-b border-black">
-                    Dashboard
                 </a>
 
                 <form method="POST" action="{{ route('logout') }}">

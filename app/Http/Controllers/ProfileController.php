@@ -11,6 +11,12 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    public function index()
+{
+    return view('profile.index', [
+        'user' => auth()->user()
+    ]);
+}
     /**
      * Display the user's profile form.
      */
@@ -24,18 +30,34 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user()->fill($request->validated());
+    public function update(Request $request)
+{
+    $user = auth()->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+    $data = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email',
+        'nik' => 'nullable|string',
+        'phone' => 'nullable|string',
+        'gender' => 'nullable|string',
+        'birth_place' => 'nullable|string',
+        'birth_date' => 'nullable|date',
+        'address' => 'nullable|string',
+        'photo' => 'nullable|image|max:1024',
+    ]);
 
-        $request->user()->save();
+    // update selain foto
+    $user->update($data);
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    // handle foto
+    if ($request->hasFile('photo')) {
+        $path = $request->file('photo')->store('avatars', 'public');
+        $user->photo = $path;
+        $user->save();
     }
+
+    return back()->with('status', 'profile-updated');
+}
 
     /**
      * Delete the user's account.
